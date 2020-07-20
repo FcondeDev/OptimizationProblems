@@ -7,11 +7,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Test1 {
-	
+
 	/*
-	 *This problem was made to calculate the maximum price that a person can buy with a coupon. Given some items the code will calculate the maximum price.
-	 *For the items below you will get that the maximum value is 451. 
-	 *The difference with the Test2 is this won't calculate what are the products you can buy, only the price
+	 * This problem was made to calculate the maximum price that a person can buy
+	 * with a coupon. Given some items the code will calculate the maximum price.
+	 * For the items below you will get that the maximum value is 451. The
+	 * difference with the Test2 is this won't calculate what are the products you
+	 * can buy, only the price
 	 */
 
 	public static void main(String[] args) {

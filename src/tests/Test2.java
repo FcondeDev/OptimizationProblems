@@ -8,11 +8,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Test2 {
-	
-	
+
 	/*
-	 *This problem was made to calculate the maximum price that a person can buy with a coupon. Given some items the code will calculate the maximum price.
-	 *For the items below you will get that the maximum value is 451 and you can buy 4 (2,3,4,5) of them. 
+	 * This problem was made to calculate the maximum price that a person can buy
+	 * with a coupon. Given some items the code will calculate the maximum price.
+	 * For the items below you will get that the maximum value is 451 and you can
+	 * buy 4 (2,3,4,5) of them.
 	 */
 
 	static float bestValue = 0.0f;
@@ -21,17 +22,16 @@ public class Test2 {
 		Logger logger = Logger.getLogger("Logger");
 
 		Map<String, Float> items = new HashMap<>();
-		items.put("1", 450.0f);
-		items.put("2", 100.0f);
-		items.put("3", 100.0f);
-		items.put("4", 151.0f);
-		items.put("5", 100.0f);
+		items.put("1", 100.0f);
+		items.put("2", 210.0f);
+		items.put("3", 260.0f);
+		items.put("4", 80.0f);
+		items.put("5", 90.0f);
 		float amount = 500;
 		int[] solution = new int[items.size()];
 		int[] finalSolution = new int[items.size()];
 		createSolution(solution, finalSolution, items, amount, 0);
 		logger.log(Level.INFO, " {0} ", createResponse(bestValue, finalSolution, items));
-
 
 	}
 
@@ -51,15 +51,16 @@ public class Test2 {
 		int i = 0;
 
 		do {
+
 			solution[n] = i;
 			if (validSolution(solution, items, amount)) {
 				if (n == items.size() - 1) {
-					getThesolution(solution, items, finalSolution, amount);
+					getThesolution(solution, items, finalSolution);
 				} else {
 					createSolution(solution, finalSolution, items, amount, n + 1);
 				}
-
 			}
+
 			i++;
 
 		} while (solution[n] != 1);
@@ -68,15 +69,17 @@ public class Test2 {
 
 	private static boolean validSolution(int[] solution, Map<String, Float> items, Float amount) {
 		float currentAmount = 0.0f;
-		for (int i : solution) {
-			if (i == 1)
+		
+		
+		for (int i = 0; i < solution.length; i++) {
+			if (solution[i] == 1)
 				currentAmount += Float.parseFloat(items.values().toArray()[i].toString());
-
 		}
-		return currentAmount < amount;
+
+		return currentAmount <= amount;
 	}
 
-	private static void getThesolution(int[] solution, Map<String, Float> items, int[] finalSolution, Float amount) {
+	private static void getThesolution(int[] solution, Map<String, Float> items, int[] finalSolution) {
 		int currentValue = 0;
 		int newValue = 0;
 
@@ -90,7 +93,7 @@ public class Test2 {
 
 		}
 
-		if (newValue > currentValue && newValue < amount) {
+		if (newValue > currentValue ) {
 			bestValue = newValue;
 			System.arraycopy(solution, 0, finalSolution, 0, solution.length);
 
